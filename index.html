@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a101c" />
+  <meta name="description" content="Boole Bots — a browser-based battle arena where Boolean logic decides which bots survive." />
+  <title>Boole Bots — Logic Arena</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="src/logic.js"></script>
+  <script defer src="src/app.js"></script>
+</head>
+<body>
+  <div class="page-shell">
+    <main>
+      <div class="game-grid">
+        <section class="arena-panel panel" aria-label="Battle arena">
+          <div class="panel-heading arena-heading"><div><p class="section-kicker">01 / BATTLEFIELD</p><h2>THE ARENA <span class="arena-dimensions" id="arenaLabel">8 × 8</span></h2></div><div class="live-chip" id="liveChip"><span></span> READY</div></div>
+          <div class="arena-wrap"><div class="arena-border"><canvas id="arena" aria-label="Animated game arena with bots moving across tiles" role="img"></canvas><div class="arena-overlay" id="arenaOverlay"><div class="overlay-emblem">∧ OR ⊕</div><strong>READY FOR BATTLE?</strong><span>Configure your bots and hit BATTLE!</span></div></div></div>
+          <div class="arena-hud"><div><span class="hud-label">MATCH CLOCK</span><strong id="clock" class="mono">00:00</strong></div><div><span class="hud-label">BOTS REMAINING</span><strong id="remaining" class="mono">04 <small>/ 04</small></strong></div><div><span class="hud-label">COLLISIONS</span><strong id="collisions" class="mono">00</strong></div></div>
+          <div class="arena-controls"><button id="battleButton" class="battle-button" type="button"><span class="button-symbol" id="battleSymbol">▶</span><span id="battleLabel">BATTLE!</span></button><button class="secondary-button" id="resetButton" type="button" title="Reset the arena and statistics"><span aria-hidden="true">↻</span> RESET MATCH</button></div>
+          <p id="statusLine" class="status-line" role="status" aria-live="polite">Set up your bots below, then start the battle.</p>
+        </section>
+
+        <aside class="sidebar">
+          <section class="panel leaderboard-panel"><div class="panel-heading"><div><p class="section-kicker">02 / SCOREBOARD</p><h2>LEADERBOARD</h2></div><span class="tiny-star" aria-hidden="true">★</span></div>
+            <div class="score-header"><span>BOT</span><span>W</span><span>L</span><span>T</span></div><div id="leaderboard" class="leaderboard" aria-live="polite"></div><div class="score-note"><span class="dot-legend"></span> A win means your logic returned 1 while your opponent's returned 0.</div>
+          </section>
+        </aside>
+      </div>
+
+      <section class="config-section" id="configuration"><div class="config-top"><div><p class="section-kicker">03 / YOUR FIGHTERS</p><h2>BUILD YOUR BOTS<span class="accent-period">.</span></h2><p>Choose their values and give them a personality. Changes reset the current match.</p></div><div class="arena-size-field"><label for="arenaSize">ARENA SIZE</label><select id="arenaSize" aria-label="Arena size"><option value="8">8 × 8</option><option value="10">10 × 10</option><option value="12">12 × 12</option><option value="16">16 × 16</option></select></div></div><div class="config-error" role="alert" id="configError" hidden></div><div id="botConfigs" class="bot-configs"></div></section>
+
+    </main>
+  </div>
+</body>
+</html>
